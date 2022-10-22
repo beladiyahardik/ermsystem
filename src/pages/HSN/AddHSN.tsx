@@ -178,7 +178,7 @@ const AddHSN = () => {
                         </Col>
                         <Col xs={4}>
                             <Form.Group id="remarks" className="mb-4">
-                                <Form.Label>remarks</Form.Label>
+                                <Form.Label>Remarks</Form.Label>
                                 <InputGroup>
                                     <Form.Control
                                         required
