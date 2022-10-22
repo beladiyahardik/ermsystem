@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '../../components/table/Table'
+import useColor from '../../hooks/useColor';
 
 export const ColorMaster = () => {
+    const { getColorList } = useColor();
+    const [colorList, setColorList] = useState();
     const columns = [
         // { field: 'id', headerName: 'ID' },
         { field: 'name', headerName: 'Name', width: 150 },
@@ -14,6 +17,12 @@ export const ColorMaster = () => {
         { id: 3, name: 'Yello', colorCode: '#34GHPQ', age: 45 },
         { id: 4, name: 'Pink', colorCode: '#ERYDHD', age: 16 },
     ];
+
+    useEffect(() => {
+        const temp = getColorList('', 1, 10);
+        console.log('temp', temp)
+    }, [])
+
 
     return (
         <div className='h-50 mt-5'>
