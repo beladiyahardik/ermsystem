@@ -11,7 +11,7 @@
 
 .sidebar {
   border-right: 1px solid #B2B2B2;
-  height: 100vh;
+  height: 99.9vh;
   padding: 5px;
 }
 
@@ -20,6 +20,7 @@
   padding-left: 30px;
   margin-top: 10px;
   width: 100%;
+  margin-top: 70px;
 }
 
 .links {
@@ -43,7 +44,23 @@
   font-weight: 700;
 }
 
+.header {
+  height: 70px;
+  background-color: cornflowerblue;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
 .active {
   color: black;
   font-weight: 700 !important;
+}
+
+.w-40px {
+  width: 40px;
 }
