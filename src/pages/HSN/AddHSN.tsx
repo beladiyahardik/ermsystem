@@ -125,16 +125,16 @@ const AddHSN = () => {
     return (
         <div className='h-100 mt-5'>
             <div className='d-flex justify-content-between pb-2'>
-                <h4>Add HSN</h4>
+                <h4>{id ? "Edit" : "Add"} HSN</h4>
             </div>
 
             <Card
                 border="light"
-                className="table-wrapper table-responsive shadow-sm mb-4 p-4"
+                className="table-wrapper table-responsive shadow-lg mb-4"
             >
                 <Card.Body className="pt-0">
-                    <Row className="align-items-end">
-                        <Col xs={4}>
+                    <Row className="">
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="name" className="mb-4">
                                 <Form.Label>Hsn Code</Form.Label>
                                 <InputGroup>
@@ -156,7 +156,7 @@ const AddHSN = () => {
                                 </span>
                             </Form.Group>
                         </Col>
-                        <Col xs={4}>
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="gst_id" className="mb-4">
                                 <Form.Label>Gst</Form.Label>
                                 <Form.Select
@@ -176,9 +176,9 @@ const AddHSN = () => {
                                 </span>
                             </Form.Group>
                         </Col>
-                        <Col xs={4}>
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="remarks" className="mb-4">
-                                <Form.Label>remarks</Form.Label>
+                                <Form.Label>Remarks</Form.Label>
                                 <InputGroup>
                                     <Form.Control
                                         required
@@ -204,7 +204,7 @@ const AddHSN = () => {
                     </Row>
 
                     <button type="button" className="btn btn-primary" onClick={() => SaveHSN()}>Save</button>
-                    <button type="button" className="btn btn-light" onClick={() => navigate("/hsn")}>Back</button>
+                    <button type="button" className="btn btn btn-outline-dark ms-2" onClick={() => navigate("/hsn")}>Cancel</button>
                 </Card.Body>
 
             </Card>

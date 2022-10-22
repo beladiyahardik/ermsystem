@@ -118,16 +118,16 @@ const AddGST = () => {
     return (
         <div className='h-100 mt-5'>
             <div className='d-flex justify-content-between pb-2'>
-                <h4>Add GST</h4>
+                <h4>{id ? "Edit" : "Add"} GST</h4>
             </div>
 
             <Card
                 border="light"
-                className="table-wrapper table-responsive shadow-sm mb-4 p-4"
+                className="table-wrapper table-responsive shadow-lg mb-4"
             >
                 <Card.Body className="pt-0">
-                    <Row className="align-items-end">
-                        <Col xs={4}>
+                    <Row className="">
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="gst_percentage" className="mb-4">
                                 <Form.Label>GST Per</Form.Label>
                                 <InputGroup>
@@ -149,7 +149,7 @@ const AddGST = () => {
                                 </span>
                             </Form.Group>
                         </Col>
-                        <Col xs={4}>
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="from_date" className="mb-4">
                                 <Form.Label>From Date</Form.Label>
                                 <InputGroup>
@@ -170,7 +170,7 @@ const AddGST = () => {
                                 </span>
                             </Form.Group>
                         </Col>
-                        <Col xs={4}>
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="to_date" className="mb-4">
                                 <Form.Label>From Date</Form.Label>
                                 <InputGroup>
@@ -192,9 +192,9 @@ const AddGST = () => {
                             </Form.Group>
                         </Col>
 
-                        <Col xs={4}>
+                        <Col lg={4} md={6} sm={12} xs={12}>
                             <Form.Group id="remarks" className="mb-4">
-                                <Form.Label>remarks</Form.Label>
+                                <Form.Label>Remarks</Form.Label>
                                 <InputGroup>
                                     <Form.Control
                                         required
@@ -220,7 +220,7 @@ const AddGST = () => {
                     </Row>
 
                     <button type="button" className="btn btn-primary" onClick={() => SaveGST()}>Save</button>
-                    <button type="button" className="btn btn-light" onClick={() => navigate("/hsn")}>Back</button>
+                    <button type="button" className="btn btn btn-outline-dark ms-2" onClick={() => navigate("/hsn")}>Cancel</button>
                 </Card.Body>
 
             </Card>

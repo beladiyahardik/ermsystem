@@ -50,7 +50,7 @@ const Product = () => {
         deleteProduct(id).then((res: any) => {
             if (res.data.success) {
                 toast.success(res.data.message)
-                navigate('/product')
+                getProductListData()
             } else {
                 toast.error(res.data.message)
             }
