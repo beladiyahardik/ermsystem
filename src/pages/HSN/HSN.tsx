@@ -31,7 +31,6 @@ export const HSN = () => {
     }
 
     const DeleteHSN = (data: any) => {
-        debugger;
         deleteHSN(data.id).then((res: any) => {
             if (res.data.success) {
                 toast.success(res.data.message);

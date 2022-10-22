@@ -204,6 +204,7 @@ const AddHSN = () => {
                     </Row>
 
                     <button type="button" className="btn btn-primary" onClick={() => SaveHSN()}>Save</button>
+                    <button type="button" className="btn btn-light" onClick={() => navigate("/hsn")}>Back</button>
                 </Card.Body>
 
             </Card>
