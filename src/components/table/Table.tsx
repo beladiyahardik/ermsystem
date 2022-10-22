@@ -1,5 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 const Table = ({ rows, columns }: any) => {
+    debugger
     return (
         <DataGrid
             rows={rows}
