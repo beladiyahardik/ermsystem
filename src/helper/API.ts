@@ -19,3 +19,10 @@ export const DELETE_HSN = `${baseURL}/api/v1/hsncode/delete`
 export const GET_HSN = `${baseURL}/api/v1/hsncode/get-hsn-code-list`
 export const GET_HSN_BY_ID = `${baseURL}/api/v1/hsncode/get-hsn-code-by-id`
 export const GET_GST_DROPDOWN = `${baseURL}/api/v1/gst/get-gst-dropdown`
+
+
+export const CREATE_GST = `${baseURL}/api/v1/gst/add`
+export const EDIT_GST = `${baseURL}/api/v1/gst/edit`
+export const DELETE_GST = `${baseURL}/api/v1/gst/delete`
+export const GET_GST = `${baseURL}/api/v1/gst/get-gst-list`
+export const GET_GST_BY_ID = `${baseURL}/api/v1/gst/get-gst-by-id`
