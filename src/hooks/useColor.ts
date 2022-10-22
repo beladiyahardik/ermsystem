@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COLOR_LIST, httpOption } from '../helper/API'
+import { GET_COLOR_DROPDOWN, GET_COLOR_LIST, httpOption } from '../helper/API'
 
 function useColor() {
     const getColorList = async (search: string, per_page: number, page_number: number) => {
@@ -15,8 +15,18 @@ function useColor() {
         }
     }
 
+    const getColorDropdown = async () => {
+        try {
+            const res = await axios.get(`${GET_COLOR_DROPDOWN}`, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
     return {
-        getColorList
+        getColorList,
+        getColorDropdown
     }
 }
 
