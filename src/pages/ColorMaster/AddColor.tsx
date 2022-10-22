@@ -33,6 +33,8 @@ const AddColor = () => {
                             navigate('/color-master')
                             toast.success(message)
                         }
+                    }).catch((err) => {
+                        toast.error('Something went wrong')
                     })
                 } else {
                     addColor(color).then((res: any) => {
@@ -41,6 +43,8 @@ const AddColor = () => {
                             navigate('/color-master')
                             toast.success(message)
                         }
+                    }).catch((err) => {
+                        toast.error('Something went wrong')
                     })
                 }
             }
