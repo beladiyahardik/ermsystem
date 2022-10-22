@@ -16,8 +16,10 @@ interface HSNDataError {
 }
 
 const AddHSN = () => {
-    const navigate = useNavigate()
-    const { createHSN, getGST } = useHSN();
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get("id")
+    const { createHSN, getGST, getHSNByID, updateHSN } = useHSN();
     const [hsnData, setHSN] = useState<HSNData>({
         hsn_code: "",
         gst_id: "",
@@ -54,22 +56,55 @@ const AddHSN = () => {
         return flag;
     }
 
+    useEffect(() => {
+        console.log(id)
+        if (id) {
+            getHSNByID(id).then((res: any) => {
+                if (res.data.success) {
+                    debugger;
+                    setHSN({ ...hsnData, hsn_code: res.data.data.hsn_code, gst_id: res.data.data.gst_id, remarks: res.data.data.remarks })
+                } else {
+                    toast.error(res.data.message)
+                }
+
+            }).catch((e: any) => {
+
+            })
+
+        }
+
+    }, [id])
+
     const SaveHSN = () => {
-        debugger;
         if (!validation()) {
             return;
         }
-        createHSN(hsnData).then((res: any) => {
-            if (res.data.success) {
-                toast.success(res.data.message);
-                navigate("/hsn")
-            } else {
-                toast.error(res.data.message)
-            }
+        if (id) {
+            updateHSN(hsnData, id).then((res: any) => {
+                if (res.data.success) {
+                    toast.success(res.data.message);
+                    navigate("/hsn")
+                } else {
+                    toast.error(res.data.message)
+                }
 
-        }).catch((e: any) => {
+            }).catch((e: any) => {
 
-        })
+            })
+        } else {
+            createHSN(hsnData).then((res: any) => {
+                if (res.data.success) {
+                    toast.success(res.data.message);
+                    navigate("/hsn")
+                } else {
+                    toast.error(res.data.message)
+                }
+
+            }).catch((e: any) => {
+
+            })
+        }
+
 
 
     }
@@ -150,7 +185,6 @@ const AddHSN = () => {
                                         name="remarks"
                                         value={hsnData.remarks}
                                         type="text"
-                                        autoFocus={true}
                                         // ref={name}
                                         placeholder="Enter Remark"
                                         onChange={(e: any) => {

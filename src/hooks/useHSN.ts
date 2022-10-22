@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CREATE_HSN, GET_GST_DROPDOWN, GET_HSN, httpOption } from '../helper/API'
+import { CREATE_HSN, DELETE_HSN, EDIT_HSN, GET_GST_DROPDOWN, GET_HSN, GET_HSN_BY_ID, httpOption } from '../helper/API'
 
 function useHSN() {
     const getHSNList = async (search: string, per_page: number, page_number: number) => {
@@ -25,10 +25,10 @@ function useHSN() {
         }
     }
 
-    const editHSN = async (data: any) => {
+    const updateHSN = async (data: any, id: any) => {
 
         try {
-            const res = await axios.post(`${CREATE_HSN}`, data, httpOption());
+            const res = await axios.put(`${EDIT_HSN}/${id}`, data, httpOption());
             return res;
         } catch (err) {
             return err;
@@ -45,13 +45,35 @@ function useHSN() {
         }
     }
 
+    const getHSNByID = async (id: any) => {
+
+        try {
+            const res = await axios.get(`${GET_HSN_BY_ID}/${id}`, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
+    const deleteHSN = async (id: any) => {
+
+        try {
+            const res = await axios.delete(`${DELETE_HSN}/${id}`, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
 
 
     return {
         getHSNList,
         createHSN,
-        editHSN,
-        getGST
+        updateHSN,
+        getGST,
+        getHSNByID,
+        deleteHSN
     }
 }
 
