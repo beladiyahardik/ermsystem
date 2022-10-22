@@ -217,7 +217,7 @@ const AddProduct = () => {
     return (
         <div className='h-100 mt-5'>
             <div className='d-flex justify-content-between pb-2'>
-                <h4>{id ? "Edit Color" : "Add Color"}</h4>
+                <h4>{id ? "Edit" : "Add"} Product</h4>
             </div>
 
             <Card

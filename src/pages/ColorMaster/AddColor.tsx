@@ -10,7 +10,7 @@ const AddColor = () => {
     const { addColor, getColorById, editColor } = useColor();
     const navigate = useNavigate();
     const { id } = useParams();
-    const [color, setColor] = useState<COLORBODY>({ name: '', color_code: '' });
+    const [color, setColor] = useState<COLORBODY>({ name: '', color_code: '#000000' });
 
     useEffect(() => {
         if (id) {
@@ -59,9 +59,11 @@ const AddColor = () => {
                         </Form.Text>
                     </Form.Group>
                 </div>
-                <Button variant="primary" type="submit">
+                {/* <Button variant="primary" type="submit">
                     {!id ? 'Add color' : 'Edit color'}
-                </Button>
+                </Button> */}
+                <button type="submit" className="btn btn-primary">Save</button>
+                <button type="button" className="btn btn btn-outline-dark ms-2" onClick={() => navigate("/color-master")}>Cancel</button>
             </Form>
         </div>
     )
