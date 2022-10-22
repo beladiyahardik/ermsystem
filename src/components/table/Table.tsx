@@ -1,12 +1,16 @@
 import { DataGrid } from '@mui/x-data-grid';
-const Table = ({ rows, columns }: any) => {
+import { useEffect, useState } from 'react'
+
+const Table = ({ rows = [], columns = [], onPageChange }: any) => {
     return (
         <DataGrid
             rows={rows}
             columns={columns}
-            pageSize={5}
+            pageSize={100}
             rowsPerPageOptions={[5]}
-        // checkboxSelection
+            // checkboxSelection
+            rowHeight={60}
+            onPageChange={onPageChange}
         />
     );
 }

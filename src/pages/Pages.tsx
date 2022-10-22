@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import AddColor from './ColorMaster/AddColor'
 import { ColorMaster } from './ColorMaster/ColorMaster'
 import AddGST from './GSTManager/AddGST'
 import GSTManager from './GSTManager/GSTManager'
@@ -12,6 +13,8 @@ const Pages = () => {
     return (
         <Routes>
             <Route path='/color-master' element={<ColorMaster />} />
+            <Route path='/color-master/add-color' element={<AddColor />} />
+            <Route path='/color-master/edit-color/:id' element={<AddColor />} />
             <Route path='/hsn' element={<HSN />} />
             <Route path='/gst' element={<GSTManager />} />
             <Route path='/gst/add' element={<AddGST />} />
