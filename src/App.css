@@ -16,8 +16,7 @@
 }
 
 .main_content {
-  padding: 5px;
-  padding-left: 30px;
+  padding: 0 30px;
   margin-top: 10px;
   width: 100%;
   margin-top: 70px;
@@ -63,4 +62,8 @@
 
 .w-40px {
   width: 40px;
+}
+
+.h-80 {
+  height: 80vh
 }

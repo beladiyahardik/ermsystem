@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Table from '../../components/table/Table';
 
 const Product = () => {
+    const navigate = useNavigate()
     const columns = [
         // { field: 'id', headerName: 'ID' },
         { field: 'product_name', headerName: 'Name', width: 150 },
@@ -25,8 +27,11 @@ const Product = () => {
     ];
 
     return (
-        <div className='h-50 mt-5'>
-            <h4>Color Master</h4>
+        <div className='h-80 mt-5'>
+            <div className='d-flex justify-content-between pb-2'>
+                <h4>Color Master</h4>
+                <button type="button" className="btn btn-primary" onClick={() => navigate("/product/add")}>Add</button>
+            </div>
             <Table rows={rows} columns={columns} />
         </div>
     )
