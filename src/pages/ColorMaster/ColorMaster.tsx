@@ -4,9 +4,10 @@ import useColor from '../../hooks/useColor';
 import { toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 export const ColorMaster = () => {
-    const { getColorList } = useColor();
+    const { getColorList, removeColor } = useColor();
     const [colorList, setColorList] = useState([]);
     const [search, setSearch] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
@@ -16,7 +17,17 @@ export const ColorMaster = () => {
 
     const columns = [
         { field: 'name', headerName: 'Name', flex: 1 },
-        { field: 'color_code', headerName: 'Color code', flex: 1 }
+        { field: 'color_code', headerName: 'Color code', flex: 1 },
+        {
+            field: "id",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params: any) => {
+                return (<><button type="button" className="btn btn-light" onClick={() => editColor(params)}><Icon.PenFill /></button>
+                    <button type="button" className="btn btn-danger mx-1" onClick={(e: any) => { e.stopPropagation(); deleteColor(params) }}><Icon.Trash2 /></button></>);
+            },
+            flex: 1
+        },
     ];
 
     useEffect(() => {
@@ -29,7 +40,7 @@ export const ColorMaster = () => {
             const { data: { color, AllCount, count } } = res.data
             if (success) {
                 setColorList(color);
-                toast.success(message)
+                // toast.success(message)
             }
         }).catch((err) => {
             console.log('err', err);
@@ -45,6 +56,21 @@ export const ColorMaster = () => {
         console.log(count, 'count');
     }
 
+    const editColor = (params: any) => {
+        navigate(`/color-master/edit-color/${params.id}`)
+    }
+
+    const deleteColor = (id: any) => {
+        removeColor(id.id).then((res: any) => {
+            const { success, message } = res.data
+            if (success) {
+                toast.success(message)
+                getList()
+            }
+        }).catch((err) => {
+            toast.error('Something went wrong')
+        })
+    }
 
     return (
         <div className='h-75 mt-2'>

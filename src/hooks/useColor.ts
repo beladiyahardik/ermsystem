@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_COLOR, GET_COLOR_DROPDOWN, GET_COLOR_LIST, httpOption } from '../helper/API'
+import { ADD_COLOR, EDIT_COLOR, GET_COLOR_BY_ID, GET_COLOR_DROPDOWN, GET_COLOR_LIST, httpOption, REMOVE_COLOR } from '../helper/API'
 import { COLORBODY } from '../types/type';
 
 function useColor() {
@@ -25,6 +25,33 @@ function useColor() {
         }
     }
 
+    const editColor = async (body: COLORBODY, id: string) => {
+        try {
+            const res = await axios.put(`${EDIT_COLOR}/${id}`, body, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
+    const getColorById = async (id: string) => {
+        try {
+            const res = await axios.get(`${GET_COLOR_BY_ID}/${id}`, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
+    const removeColor = async (id: string) => {
+        try {
+            const res = await axios.delete(`${REMOVE_COLOR}/${id}`, httpOption());
+            return res;
+        } catch (err) {
+            return err;
+        }
+    }
+
     const getColorDropdown = async () => {
         try {
             const res = await axios.get(`${GET_COLOR_DROPDOWN}`, httpOption());
@@ -37,7 +64,10 @@ function useColor() {
     return {
         getColorList,
         addColor,
-        getColorDropdown
+        getColorDropdown,
+        removeColor,
+        getColorById,
+        editColor
     }
 }
 

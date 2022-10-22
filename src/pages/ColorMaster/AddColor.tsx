@@ -1,28 +1,48 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useColor from '../../hooks/useColor';
 import { COLORBODY } from '../../types/type';
 
 const AddColor = () => {
-    const { addColor } = useColor();
+    const { addColor, getColorById, editColor } = useColor();
     const navigate = useNavigate();
+    const { id } = useParams();
     const [color, setColor] = useState<COLORBODY>({ name: '', color_code: '' });
+
+    useEffect(() => {
+        if (id) {
+            getColorById(id).then((res: any) => {
+                const { data: { color_code, name } } = res.data;
+                setColor({ name, color_code });
+            })
+        }
+    }, [id])
 
     return (
         <div className='h-50 mt-5'>
-            <h4>AddColor</h4>
+            <h4>{id ? 'Edit color' : 'Add Color'}</h4>
             <Form className='mt-5' onSubmit={(e) => {
                 e.preventDefault();
-                addColor(color).then((res: any) => {
-                    const { success, message } = res.data
-                    if (success) {
-                        navigate('/color-master')
-                        toast.success(message)
-                    }
-                })
+                if (id) {
+                    editColor(color, id).then((res: any) => {
+                        const { success, message } = res.data
+                        if (success) {
+                            navigate('/color-master')
+                            toast.success(message)
+                        }
+                    })
+                } else {
+                    addColor(color).then((res: any) => {
+                        const { success, message } = res.data
+                        if (success) {
+                            navigate('/color-master')
+                            toast.success(message)
+                        }
+                    })
+                }
             }
             }>
                 <div className='d-flex w-25 justify-content-between'>
@@ -40,7 +60,7 @@ const AddColor = () => {
                     </Form.Group>
                 </div>
                 <Button variant="primary" type="submit">
-                    Add color
+                    {!id ? 'Add color' : 'Edit color'}
                 </Button>
             </Form>
         </div>
