@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
       <Router />
     </BrowserRouter>
   );

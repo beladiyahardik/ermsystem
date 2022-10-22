@@ -43,20 +43,12 @@ export const HSN = () => {
         })
     }
 
-    const rows = [
-        { id: 1, HSN_CODE: 'Red', GST_PERCENTAGE: '18%', Remarks: 35 },
-        { id: 2, HSN_CODE: 'Green', GST_PERCENTAGE: '16.5%', Remarks: 42 },
-        { id: 3, HSN_CODE: 'Yello', GST_PERCENTAGE: '12%', Remarks: 45 },
-        { id: 4, HSN_CODE: 'Pink', GST_PERCENTAGE: '11%', Remarks: 16 },
-    ];
-
     useEffect(() => {
         gridData()
     }, [])
 
     const gridData = () => {
         getHSNList('', 10, 1).then((res: any) => {
-            console.log('temp', res.data.hsnCode)
             setHSNList(res.data.data.hsnCode)
         }).catch((err) => {
             console.log('err', err);

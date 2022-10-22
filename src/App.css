@@ -67,3 +67,7 @@
 .h-80 {
   height: 80vh
 }
+
+.signup-alert-validation {
+  color: red;
+}
