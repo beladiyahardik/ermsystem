@@ -5,6 +5,7 @@ import { GET_PRODUCT_LIST } from '../../helper/API';
 import useProduct from '../../hooks/useProduct';
 import { ProductData } from './AddProduct';
 import * as Icon from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
 
 const Product = () => {
     const navigate = useNavigate()
@@ -47,7 +48,12 @@ const Product = () => {
 
     const deleteProductById = (id: string) => {
         deleteProduct(id).then((res: any) => {
-            setProductData(res?.data?.data?.product ?? [])
+            if (res.data.success) {
+                toast.success(res.data.message)
+                navigate('/product')
+            } else {
+                toast.error(res.data.message)
+            }
         }).catch((err: any) => {
             console.log(err);
     
@@ -70,7 +76,7 @@ const Product = () => {
     return (
         <div className='h-80 mt-5'>
             <div className='d-flex justify-content-between pb-2'>
-                <h4>Color Master</h4>
+                <h4>Product Master</h4>
                 <button type="button" className="btn btn-primary" onClick={() => navigate("/product/add")}>Add</button>
             </div>
             <Table rows={productData} columns={columns} />
