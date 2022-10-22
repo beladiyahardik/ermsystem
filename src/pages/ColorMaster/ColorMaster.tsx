@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../../components/table/Table'
 import useColor from '../../hooks/useColor';
+import { toast } from 'react-toastify';
 
 export const ColorMaster = () => {
     const { getColorList } = useColor();
@@ -19,8 +20,12 @@ export const ColorMaster = () => {
     ];
 
     useEffect(() => {
-        const temp = getColorList('', 1, 10);
-        console.log('temp', temp)
+        getColorList('', 1, 10).then((res: any) => {
+            console.log('temp', res.data)
+            toast.success('ff')
+        }).catch((err) => {
+            console.log('err', err);
+        })
     }, [])
 
 
